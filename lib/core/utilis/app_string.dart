@@ -26,6 +26,7 @@ class AppString{
   static const month='شهر';
   static const organic='هل المنتج أورجانيك ؟';
   static const kilo='/كيلو';
+  static const orderView='ادارة الطلبات';
 
 
 

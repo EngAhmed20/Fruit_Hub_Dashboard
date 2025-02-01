@@ -43,6 +43,8 @@ dependencies:
   flutter_bloc: ^8.1.6
   cloud_firestore: ^5.4.4
   modal_progress_hud_nsn: ^0.5.1
+  flutter_svg: ^2.0.10+1
+
 
 
 
@@ -79,6 +81,7 @@ flutter:
   assets:
     - lang/ar.json
     - lang/en.json
+    - assets/image/
 
   fonts:
     - family: cairo
