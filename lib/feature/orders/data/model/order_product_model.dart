@@ -12,11 +12,11 @@ class OrderProductModel{
 
   OrderProductModel( {required this.quantity,required this.name, required this.imgUrl, required this.code, required this.price});
   factory OrderProductModel.fromJson(Map<String,dynamic>json)=>OrderProductModel(
-    quantity: json['quantity'],
+    quantity: json['quantity']??1,
       name: json['name'],
       imgUrl:json['imgUrl'],
       code: json['code'],
-      price: json['price'],);
+      price: json['price'].toDouble(),);
   toJson()=>{
     'name':name,
     'imgUrl':imgUrl,

@@ -9,15 +9,19 @@ class OrderModel{
   final List<OrderProductModel> orderProductModel;
   final String uId;
   final String status;
-  OrderModel({required this.status,required this.totalPrice, required this.paymentMethod, required this.shippingAddressModel, required this.orderProductModel, required this.uId});
+  final String orderId;
+  OrderModel( {required this.orderId,required this.status,required this.totalPrice, required this.paymentMethod, required this.shippingAddressModel, required this.orderProductModel, required this.uId});
 
 factory OrderModel.fromJson(Map<String,dynamic>json)=>OrderModel(
-  status: json['status'],
-    totalPrice: json['totalPrice'],
-    paymentMethod: json['paymentMethod'],
+  orderId: json['orderId'],
+  status: json['status']??'',
+    totalPrice: json['totalPrice'].toDouble(),
+    paymentMethod: json['paymentMethod']??'',
     shippingAddressModel: ShippingAddressModel.fromJson(json['shippingAddressModel']),
-    orderProductModel: json['orderProduct'].map((e)=>OrderProductModel.fromJson(e)).toList,
-    uId: json['uId'],);
+  orderProductModel: (json['orderProductModel'] as List<dynamic>?)
+      ?.map((e) => OrderProductModel.fromJson(e as Map<String, dynamic>))
+      .toList() ?? [],
+    uId: json['uId']??'',);
   toJson() => {
     'totalPrice': totalPrice,
     'uId': uId,
@@ -34,6 +38,7 @@ factory OrderModel.fromJson(Map<String,dynamic>json)=>OrderModel(
     orderProductModel: orderProductModel.map((e) => e.toEntity()).toList(),
     uId: uId,
     status: status,
+    orderId: orderId,
     //date: DateTime.now(),
   );
 

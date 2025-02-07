@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import '../utilis/app_colors.dart';
 import '../utilis/app_style/app_text_styles.dart';
 
-void customSnackBar(BuildContext context, String msg,{IconData?iconMsg,Color?iconColor}) {
+void customSnackBar({required BuildContext context, required String msg,IconData?iconMsg,Color?iconColor}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-           Icon(iconMsg??Icons.error_outlined,color: iconColor??Colors.red,size: 25,),
           Text(
             msg,
             style: textStyle.semiBold16,
             textAlign: TextAlign.center,
           ),
+          const SizedBox(width: 10,),
+          Icon(iconMsg??Icons.error_outlined,color: iconColor??Colors.red,size: 25,),
         ],
       ),
       margin: const EdgeInsets.all(2),
@@ -24,7 +25,7 @@ void customSnackBar(BuildContext context, String msg,{IconData?iconMsg,Color?ico
         borderRadius: BorderRadius.circular(5),
       ),
       elevation: 10,
-      backgroundColor: Colors.grey,
+      backgroundColor: AppColors.lightPrimaryColor,
     ),
   );
 }

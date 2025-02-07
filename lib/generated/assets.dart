@@ -6,6 +6,7 @@ class Assets {
   static const String fontsCairoMedium = 'assets/fonts/Cairo-Medium.ttf';
   static const String fontsCairoRegular = 'assets/fonts/Cairo-Regular.ttf';
   static const String fontsCairoSemiBold = 'assets/fonts/Cairo-SemiBold.ttf';
+  static const String imageCheck = 'assets/image/Check.svg';
   static const String imageFilter = 'assets/image/filter.svg';
   static const String langAr = 'lang/ar.json';
   static const String langEn = 'lang/en.json';

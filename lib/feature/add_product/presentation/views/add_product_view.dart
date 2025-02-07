@@ -26,10 +26,10 @@ class AddProductView extends StatelessWidget {
           child: BlocConsumer<AddProductCubit,AddProductState>(
             listener: (context,state){
               if(state is AddProductSuccess){
-                customSnackBar(context,AppString.addProductSuccess,iconMsg: Icons.check_circle,iconColor: AppColors.primaryColor);
+                customSnackBar(context: context,msg:AppString.addProductSuccess,iconMsg: Icons.check_circle,iconColor: AppColors.primaryColor);
 
               }else if(state is AddProductFailure){
-                customSnackBar(context,AppString.addProductError,);
+                customSnackBar(context: context,msg:  AppString.addProductError,);
 
               }
             },

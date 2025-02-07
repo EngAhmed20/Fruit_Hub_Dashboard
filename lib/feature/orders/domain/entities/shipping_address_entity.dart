@@ -15,4 +15,18 @@ class ShippingAddressEntity {
       this.phone,
       this.addressDetails});
 
+
+
+  String shippingAddressDetails(){
+    if(addressDetails!.isNotEmpty){
+      return '${addressDetails} , ${address} , ${city}';
+
+
+    }
+    else{
+      return '${address} , ${city}';
+
+    }
+  }
+
 }

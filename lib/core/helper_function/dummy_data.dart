@@ -31,7 +31,7 @@ List<OrderEntity> createDummyOrder() {
   quantity: 1,
   ),
   ],
-  uId: 'order123', status: 'pending',
+  uId: 'order123', status: 'pending', orderId: '',
   ),
      OrderEntity(
        totalPrice: 150.0,
@@ -60,7 +60,7 @@ List<OrderEntity> createDummyOrder() {
            quantity: 1,
          ),
        ],
-       uId: 'order123', status: 'pending',
+       uId: 'order123', status: 'pending', orderId: '',
      ),
 
      OrderEntity(
@@ -90,7 +90,7 @@ List<OrderEntity> createDummyOrder() {
            quantity: 1,
          ),
        ],
-       uId: 'order123', status: 'pending',
+       uId: 'order123', status: 'pending', orderId: '',
      ),
 
 

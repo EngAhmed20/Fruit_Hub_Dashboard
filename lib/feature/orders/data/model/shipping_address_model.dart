@@ -20,6 +20,8 @@ class ShippingAddressModel {
     email: json['email'],
     address: json['address'],
     city: json['city'],
+    phone: json['phone'],
+    addressDetails: json['addressDetails']?? '',
   );
 
 toJson(){
