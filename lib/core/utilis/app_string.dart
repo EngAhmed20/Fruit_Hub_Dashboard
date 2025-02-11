@@ -58,6 +58,13 @@ class AppString{
   static const String inWayOrders='خرج للتوصيل';
   static const String deliveredOrder='تم التسليم';
   static const String ordersCount=' عدد الطلبات: ';
+  static const String filterByTitle='ترتيب حسب :';
+  static const String filterByDate='تاريخ الطلب';
+  static const String filterByPriceAsc='السعر ( الأقل الي الأعلي )';
+  static const String filterByPriceDesc='السعر ( الأعلي الي الأقل )';
+  static const String filterFailureStatus='الرجاء اختيار عامل التصفية';
+  static const String filterButtonTitle='تصفيه';
+
 
 
 

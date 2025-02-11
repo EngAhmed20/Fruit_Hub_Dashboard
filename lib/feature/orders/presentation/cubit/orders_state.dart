@@ -31,3 +31,12 @@ class GoToOrderType extends OrdersState {}
 class InitStateComplete extends OrdersState {}
 
 class CountOrdersLoadingStatus extends OrdersState {}
+
+class FilterOrders extends OrdersState {}
+class GetOrdersByFilterFailure extends OrdersState {
+
+}
+
+class ClearOrdersList extends OrdersState {}
+
+

@@ -18,6 +18,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   final List<OrderEntity> pendingOrders=[];
   final List<OrderEntity> deliveredOrders=[];
   final List<OrderEntity> inWayOrders=[];
+  late int filterByIndex;
   int currentPageIndex=0;
 
   init(){
@@ -28,18 +29,16 @@ class OrdersCubit extends Cubit<OrdersState> {
       //emit(InitStateComplete());
 
     });
+    filterByIndex=-1;
     emit(InitStateComplete());
   }
-  Future<void> getOrders() async {
-    allOrders.clear();
-    pendingOrders.clear();
-    shippedOrders.clear();
-    deliveredOrders.clear();
+  Future<void> getOrders({String?orderBy,bool? descending}) async {
     emit(OrdersLoading());
-    final result = await orderRepo.getOrders();
+    final result = await orderRepo.getOrders(orderBy:orderBy,descending: descending);
     result.fold((failure) => emit(GetOrdersFailure(error: failure.message)),
         (orders) {
-       for (var order in orders) {
+          clearOrdersList();
+          for (var order in orders) {
          allOrders.add(order);
         if(order.status==AppString.newOrdersStatus)
         {
@@ -55,12 +54,21 @@ class OrdersCubit extends Cubit<OrdersState> {
 
 
   }
+  void clearOrdersList(){
+    allOrders.clear();
+    pendingOrders.clear();
+    shippedOrders.clear();
+    inWayOrders.clear();
+  }
   Future<void>updateOrderStatus({required String orderId,required String status})async{
     emit(UpdateOrderStatusLoading());
     final result = await orderRepo.updateOrderStatus(orderId,status);
     result.fold((failure) => emit(UpdateOrderStatusFailure(error: failure.message)),
-        (success) => emit(UpdateOrderStatusSuccess()));
-    getOrders();
+        (success) {
+      getOrders();
+     // currentPageIndex=0;
+      emit(UpdateOrderStatusSuccess());}
+    );
 
   }
   onTapOnOrderType(int index){
@@ -95,4 +103,40 @@ class OrdersCubit extends Cubit<OrdersState> {
       shippedOrders.length,
       inWayOrders.length,
     ];
-  }}
+  }
+/////////////////////filter by bottom sheet
+  bool showValidationError=false;
+  void selectFilterByIndex(int index){
+    filterByIndex=index;
+    showValidationError=false;
+    emit(FilterOrders());
+
+
+}
+List<String>filterByTitle=[
+  AppString.filterByDate,
+  AppString.filterByPriceDesc,
+  AppString.filterByPriceAsc,
+];
+ Future <void> getOrdersUsingFilters()async{
+    if(filterByIndex!=-1){
+      if(filterByIndex==0){
+        await getOrders(orderBy:'date', descending: true);
+
+      }else if(filterByIndex==1){
+        await getOrders(orderBy:'totalPrice', descending: true);
+      }else if(filterByIndex==2){
+        await getOrders(orderBy:'totalPrice', descending: false);
+      }
+    }else{
+      showValidationError=true;
+      emit(GetOrdersByFilterFailure());
+    }
+  }
+
+
+
+
+
+
+}

@@ -26,7 +26,7 @@ class FirestoreService implements DatabaseService{
       Query<Map<String,dynamic>>data=await firestore.collection(path);
       if(query['orderBy']!=null){
         var orderByFiled=query['orderBy'];
-        var descending=query['descending'];
+        var descending=query['descending']??false;
          data=data.orderBy(orderByFiled,descending: descending);
 
       }
@@ -35,6 +35,8 @@ class FirestoreService implements DatabaseService{
         data=data.limit(limit);
 
       }
+      var result = await data.get();
+      return result.docs.map((doc) => doc.data()).toList();
     }
     var  result=await firestore.collection(path).get();
 

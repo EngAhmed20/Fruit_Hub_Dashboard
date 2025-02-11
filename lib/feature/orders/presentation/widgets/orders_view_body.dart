@@ -77,7 +77,8 @@ class OrdersViewBody extends StatelessWidget {
             iconColor: Colors.red,
             iconMsg: Icons.error_outline);
       }
-    });
+    }
+      );
   }
 
   Row OrdersCount(OrdersCubit cubit) {
@@ -107,7 +108,9 @@ class FilterSection extends StatelessWidget {
     return Row(
       children: [
         GestureDetector(
-            onTap: () {},
+            onTap: () {
+              showModalBottomSheet(context: context, builder: (context)=>Text('show model sheet'));
+            },
             child: SvgPicture.asset(
               Assets.imageFilter,
               width: 30,

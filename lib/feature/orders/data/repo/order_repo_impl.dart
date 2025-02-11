@@ -14,9 +14,13 @@ class OrderRepoImpl implements OrderRepo {
 
   OrderRepoImpl(this.fireStoreService);
   @override
-  Future<Either<Failure, List<OrderEntity>>> getOrders() async {
+  Future<Either<Failure, List<OrderEntity>>> getOrders(
+      {String? orderBy, bool? descending}) async {
     try {
-      var data = await fireStoreService.getData(path: BackendEndpoint.orders)as List<Map<String,dynamic>>;
+      var data = await fireStoreService.getData(path: BackendEndpoint.orders,query: {
+        'orderBy':orderBy,
+        'descending':descending,
+      })as List<Map<String,dynamic>>;
       print('Data Type: ${data.runtimeType}'); // Check the actual type of data
        //print('Data Content: $data');
       if (data.isNotEmpty) {
