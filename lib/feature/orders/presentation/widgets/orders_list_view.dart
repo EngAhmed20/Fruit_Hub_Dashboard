@@ -10,15 +10,16 @@ class OrdersListView extends StatelessWidget {
   final List<OrderEntity>ordersModel;
   final OrdersCubit cubit;
   final String? text;
+  final bool?showButton;
 
-  const OrdersListView({super.key, required this.ordersModel,required this.cubit, this.text});
+  const OrdersListView({super.key, required this.ordersModel,required this.cubit, this.text,this.showButton=true});
 
   @override
   Widget build(BuildContext context) {
 
     return ConditionalBuilder(condition: ordersModel.isNotEmpty, builder: (context)=>ListView.builder(
       itemBuilder: (context, index) =>
-          OrderItemWidget(orderModel: ordersModel[index],cubit: cubit,text: text,),
+          OrderItemWidget(orderModel: ordersModel[index],cubit: cubit,text: text,showButton: showButton,),
       itemCount: ordersModel.length,
     ), fallback: (context)=>Center(child: Text(cubit.noOrdersMsg()[cubit.currentPageIndex],style: textStyle.Bold16,),));
   }

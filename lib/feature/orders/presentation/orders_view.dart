@@ -37,7 +37,7 @@ class OrdersView extends StatelessWidget {
             },
             icon: SvgPicture.asset(
               Assets.imageFilter,
-              colorFilter: ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+              colorFilter: const ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
               width: 25,
             ),
             style: ButtonStyle(

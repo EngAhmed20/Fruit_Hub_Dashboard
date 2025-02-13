@@ -49,6 +49,7 @@ class AppString{
   static const String noOrders='لا يوجد طلبات حتي الان';
   static const String noShippedOrder='لا يوجد طلبات مشحونة ';
   static const String noInTheWayOrder='لا يوجد طلبات خرجت للتوصيل ';
+  static const String noDeliveredOrder='لم يتم تسليم اي طلبات حتي الان';
   static const String newOrdersStatus='pending';
   static const String shippedOrderStatus='Shipped';
   static const String inWayOrderStatus='In The Way';

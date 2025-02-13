@@ -14,8 +14,9 @@ class OrderItemWidget extends StatelessWidget {
   final OrderEntity orderModel;
   final OrdersCubit cubit;
   final String? text;
+  final bool? showButton;
 
-  const OrderItemWidget({super.key, required this.orderModel,required this.cubit,  this.text});
+  const OrderItemWidget({super.key, required this.orderModel,required this.cubit,  this.text,this.showButton=true});
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +84,8 @@ class OrderItemWidget extends StatelessWidget {
               },
             ),
             const SizedBox(height: 16),
-            CustomButton(text: text??AppString.shippingTheOrder, onPressed: (){
+            if(showButton==true)
+               CustomButton(text: text??AppString.shippingTheOrder, onPressed: (){
               cubit.changeOrderStatus(orderId: orderModel.orderId);
 
             }),

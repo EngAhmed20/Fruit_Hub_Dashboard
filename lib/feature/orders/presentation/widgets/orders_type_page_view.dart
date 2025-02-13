@@ -11,11 +11,12 @@ class OrdersTypePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
+      physics: NeverScrollableScrollPhysics(),
       controller: cubit.pageController,
       itemBuilder: (context,index){
        return getPages(cubit: cubit)[index];
 
-    },itemCount: 3,
+    },itemCount: getPages(cubit: cubit).length,
     );
   }
 }
@@ -25,6 +26,8 @@ List<Widget> getPages( {required OrdersCubit cubit})
    OrdersListView(ordersModel: cubit.pendingOrders, cubit: cubit),
    OrdersListView(ordersModel: cubit.shippedOrders, cubit: cubit,text: AppString.inWayOrders,),
    OrdersListView(ordersModel: cubit.inWayOrders, cubit: cubit,text: AppString.deliveredOrder,),
+   OrdersListView(ordersModel: cubit.deliveredOrders, cubit: cubit,text: AppString.deliveredOrder,showButton: false,),
+
 
 
  ];}

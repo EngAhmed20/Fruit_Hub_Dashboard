@@ -28,6 +28,7 @@ List<String> getTitle() {
     AppString.newOrders,
     AppString.shippedOrder,
     AppString.inWayOrders,
+    AppString.deliveredOrder,
     /* AppString.review,*/
   ];
 }

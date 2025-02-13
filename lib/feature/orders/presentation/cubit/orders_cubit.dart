@@ -47,7 +47,10 @@ class OrdersCubit extends Cubit<OrdersState> {
           shippedOrders.add(order);
         }else if(order.status==AppString.inWayOrderStatus){
           inWayOrders.add(order);
+        }else if(order.status==AppString.deliveredOrderStatus){
+          deliveredOrders.add(order);
         }
+
       }
       emit(GetOrdersSuccess(orders: orders));
         });
@@ -59,6 +62,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     pendingOrders.clear();
     shippedOrders.clear();
     inWayOrders.clear();
+    deliveredOrders.clear();
   }
   Future<void>updateOrderStatus({required String orderId,required String status})async{
     emit(UpdateOrderStatusLoading());
@@ -74,7 +78,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   onTapOnOrderType(int index){
     currentPageIndex=index;
     pageController.animateToPage(index,
-        duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+        duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     emit(GoToOrderType());
 
   }
@@ -83,6 +87,7 @@ class OrdersCubit extends Cubit<OrdersState> {
       AppString.noOrders,
       AppString.noShippedOrder,
       AppString.noInTheWayOrder,
+      AppString.noDeliveredOrder,
 
     ];
   }
@@ -92,8 +97,9 @@ class OrdersCubit extends Cubit<OrdersState> {
       updateOrderStatus(orderId: orderId, status: AppString.shippedOrderStatus);
     } else if(currentPageIndex==1){
       updateOrderStatus(orderId: orderId, status: AppString.inWayOrderStatus);
-    } else if(currentPageIndex==2){
-      updateOrderStatus(orderId: orderId, status: AppString.deliveredOrderStatus);
+    } else if(currentPageIndex==2) {
+      updateOrderStatus(
+          orderId: orderId, status: AppString.deliveredOrderStatus);
     }
 
 }
@@ -102,6 +108,7 @@ class OrdersCubit extends Cubit<OrdersState> {
       pendingOrders.length,
       shippedOrders.length,
       inWayOrders.length,
+      deliveredOrders.length,
     ];
   }
 /////////////////////filter by bottom sheet

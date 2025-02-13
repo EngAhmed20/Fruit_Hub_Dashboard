@@ -49,10 +49,7 @@ class OrdersViewBody extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            FilterSection(),
-            const SizedBox(
-              height: 5,
-            ),
+
             OrdersCount(cubit),
             const SizedBox(height: 8),
             Expanded(
@@ -98,28 +95,6 @@ class OrdersViewBody extends StatelessWidget {
   }
 }
 
-class FilterSection extends StatelessWidget {
-  const FilterSection({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        GestureDetector(
-            onTap: () {
-              showModalBottomSheet(context: context, builder: (context)=>Text('show model sheet'));
-            },
-            child: SvgPicture.asset(
-              Assets.imageFilter,
-              width: 30,
-              height: 30,
-            )),
-      ],
-    );
-  }
-}
 /*
   if (state is OrdersLoading) {
         return LoadingAnimatedWidget(context);
