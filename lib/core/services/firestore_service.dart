@@ -77,7 +77,6 @@ class FirestoreService implements DatabaseService{
         data=data.limit(limit);
 
       }
-      //var result = await data;
       await for(var result in data.snapshots()){
         yield result.docs.map((doc)=>doc.data()).toList();
       }

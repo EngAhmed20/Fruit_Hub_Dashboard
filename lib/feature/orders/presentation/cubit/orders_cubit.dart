@@ -32,7 +32,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     filterByIndex=-1;
     emit(InitStateComplete());
   }
-  Future <void> getOrders({String?orderBy,bool? descending}) async{
+  Future<void> getOrders({String?orderBy,bool? descending}) async{
     emit(OrdersLoading());
     final result =  orderRepo.getOrders(orderBy:orderBy,descending: descending);
     await for (var data in result){

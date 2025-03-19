@@ -25,10 +25,10 @@ class OrderRepoImpl implements OrderRepo {
           List<OrderEntity> orders = data.map((order) => OrderModel.fromJson(order).toEntity()).toList();
           yield Right(orders);
         }else{
-          print('no data');
           yield Left(ServerFailure("No data found"));
         }
       }
+
     } catch (e) {
       log('error${e.toString()}');
       yield Left(ServerFailure(e.toString()));
