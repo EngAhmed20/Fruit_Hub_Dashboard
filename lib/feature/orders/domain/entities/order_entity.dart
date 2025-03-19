@@ -10,13 +10,13 @@ import 'order_product_entity.dart';
 class OrderEntity{
   final double totalPrice;
   final String paymentMethod;
-  final ShippingAddressEntity shippingAddressModel;
+  final ShippingAddressEntity shippingAddressEntity;
   final List<OrderProductEntity> orderProductModel;
   final String uId;
   final String status;
   final String orderId;
 
-  OrderEntity({required this.orderId,required this.status,required this.totalPrice, required this.paymentMethod, required this.shippingAddressModel, required this.orderProductModel, required this.uId});
+  OrderEntity({required this.orderId,required this.status,required this.totalPrice, required this.paymentMethod, required this.shippingAddressEntity, required this.orderProductModel, required this.uId});
 
 String getPaymentMethod() {
   if(paymentMethod==paypal){

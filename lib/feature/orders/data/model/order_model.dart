@@ -34,7 +34,7 @@ factory OrderModel.fromJson(Map<String,dynamic>json)=>OrderModel(
   OrderEntity toEntity()=>OrderEntity(
     totalPrice: totalPrice,
     paymentMethod: paymentMethod,
-    shippingAddressModel: shippingAddressModel.toEntity(),
+    shippingAddressEntity: shippingAddressModel.toEntity(),
     orderProductModel: orderProductModel.map((e) => e.toEntity()).toList(),
     uId: uId,
     status: status,

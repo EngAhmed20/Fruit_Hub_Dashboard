@@ -4,7 +4,7 @@ import 'package:fruits_app_dashboard/feature/orders/domain/entities/order_entity
 import '../../../../core/errors/failure.dart';
 
 abstract class OrderRepo{
-  Future<Either<Failure, List<OrderEntity>>> getOrders({String? orderBy,bool? descending});
+  Stream<Either<Failure, List<OrderEntity>>> getOrders({String? orderBy,bool? descending});
   Future<Either<Failure, void>> updateOrderStatus(String orderId,String status);
 
 

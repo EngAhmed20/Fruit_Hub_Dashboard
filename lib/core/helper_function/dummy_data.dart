@@ -7,7 +7,7 @@ List<OrderEntity> createDummyOrder() {
   OrderEntity(
   totalPrice: 150.0,
   paymentMethod: 'عند الاستلام',
-  shippingAddressModel: ShippingAddressEntity(
+  shippingAddressEntity: ShippingAddressEntity(
   name: 'John Doe',
   email: 'john.doe@example.com',
   address: '123 Main St',
@@ -36,7 +36,7 @@ List<OrderEntity> createDummyOrder() {
      OrderEntity(
        totalPrice: 150.0,
        paymentMethod: 'عند الاستلام',
-       shippingAddressModel: ShippingAddressEntity(
+       shippingAddressEntity: ShippingAddressEntity(
          name: 'John Doe',
          email: 'john.doe@example.com',
          address: '123 Main St',
@@ -66,7 +66,7 @@ List<OrderEntity> createDummyOrder() {
      OrderEntity(
        totalPrice: 150.0,
        paymentMethod: 'عند الاستلام',
-       shippingAddressModel: ShippingAddressEntity(
+       shippingAddressEntity: ShippingAddressEntity(
          name: 'John Doe',
          email: 'john.doe@example.com',
          address: '123 Main St',

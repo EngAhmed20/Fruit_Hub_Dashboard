@@ -14,27 +14,24 @@ class OrderRepoImpl implements OrderRepo {
 
   OrderRepoImpl(this.fireStoreService);
   @override
-  Future<Either<Failure, List<OrderEntity>>> getOrders(
-      {String? orderBy, bool? descending}) async {
+  Stream <Either<Failure, List<OrderEntity>>> getOrders(
+      {String? orderBy, bool? descending}) async* {
     try {
-      var data = await fireStoreService.getData(path: BackendEndpoint.orders,query: {
+      await for(var (data as List<Map<String,dynamic>>) in fireStoreService.getStreamData(path: BackendEndpoint.orders,query: {
         'orderBy':orderBy,
         'descending':descending,
-      })as List<Map<String,dynamic>>;
-      print('Data Type: ${data.runtimeType}'); // Check the actual type of data
-       //print('Data Content: $data');
-      if (data.isNotEmpty) {
-        List<OrderEntity> orders = data.map((order) => OrderModel.fromJson(order).toEntity()).toList();
-       // print('orders+ ${orders}');
-        return Right(orders);
-      } else {
-        // Return failure if data is null or empty
-        print('no data');
-        return Left(ServerFailure("No data found"));
+      }) ){
+        if(data.isNotEmpty){
+          List<OrderEntity> orders = data.map((order) => OrderModel.fromJson(order).toEntity()).toList();
+          yield Right(orders);
+        }else{
+          print('no data');
+          yield Left(ServerFailure("No data found"));
+        }
       }
     } catch (e) {
       log('error${e.toString()}');
-      return Left(ServerFailure(e.toString()));
+      yield Left(ServerFailure(e.toString()));
     }
   }
 

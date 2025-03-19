@@ -32,7 +32,7 @@ class RecipientInformationWidget extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              Text('${orderModel.shippingAddressModel.name}',style: textStyle.semiBold16,),
+              Text('${orderModel.shippingAddressEntity.name}',style: textStyle.semiBold16,),
             ],
           ),
           const SizedBox(height: 6,),
@@ -45,7 +45,7 @@ class RecipientInformationWidget extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              Text('${orderModel.shippingAddressModel.phone}',style: textStyle.semiBold16,),
+              Text('${orderModel.shippingAddressEntity.phone}',style: textStyle.semiBold16,),
             ],
           ),
           const SizedBox(height: 6,),
@@ -58,7 +58,7 @@ class RecipientInformationWidget extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              Flexible(child: Text('${orderModel.shippingAddressModel.shippingAddressDetails()}',style: textStyle.semiBold16,)),
+              Flexible(child: Text('${orderModel.shippingAddressEntity.shippingAddressDetails()}',style: textStyle.semiBold16,)),
             ],
           ),
 

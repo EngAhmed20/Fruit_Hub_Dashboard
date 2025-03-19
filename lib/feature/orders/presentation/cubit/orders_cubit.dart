@@ -32,29 +32,29 @@ class OrdersCubit extends Cubit<OrdersState> {
     filterByIndex=-1;
     emit(InitStateComplete());
   }
-  Future<void> getOrders({String?orderBy,bool? descending}) async {
+  Future <void> getOrders({String?orderBy,bool? descending}) async{
     emit(OrdersLoading());
-    final result = await orderRepo.getOrders(orderBy:orderBy,descending: descending);
-    result.fold((failure) => emit(GetOrdersFailure(error: failure.message)),
-        (orders) {
-          clearOrdersList();
-          for (var order in orders) {
-         allOrders.add(order);
-        if(order.status==AppString.newOrdersStatus)
-        {
-          pendingOrders.add(order);
-        } else if(order.status==AppString.shippedOrderStatus){
-          shippedOrders.add(order);
-        }else if(order.status==AppString.inWayOrderStatus){
-          inWayOrders.add(order);
-        }else if(order.status==AppString.deliveredOrderStatus){
-          deliveredOrders.add(order);
-        }
+    final result =  orderRepo.getOrders(orderBy:orderBy,descending: descending);
+    await for (var data in result){
+      data.fold((failure) => emit(GetOrdersFailure(error: failure.message)),
+              (orders) {
+            clearOrdersList();
+            for (var order in orders) {
+              allOrders.add(order);
+              if(order.status==AppString.newOrdersStatus)
+              {
+                pendingOrders.add(order);
+              } else if(order.status==AppString.shippedOrderStatus){
+                shippedOrders.add(order);
+              }else if(order.status==AppString.inWayOrderStatus){
+                inWayOrders.add(order);
+              }else if(order.status==AppString.deliveredOrderStatus){
+                deliveredOrders.add(order);
+              }      }
+            emit(GetOrdersSuccess(orders: orders));
+          });
 
-      }
-      emit(GetOrdersSuccess(orders: orders));
-        });
-
+    }
 
   }
   void clearOrdersList(){
